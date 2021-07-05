@@ -601,9 +601,10 @@ class ZLVideoPreviewCell: ZLPreviewBaseCell {
     }
     
     func configurePlayerLayer(_ item: AVPlayerItem) {
-        self.playBtn.setImage(getImage("zl_playVideo"), for: .normal)
-        self.playBtn.isEnabled = true
-        
+        DispatchQueue.main.async {
+            self.playBtn.setImage(getImage("zl_playVideo"), for: .normal)
+            self.playBtn.isEnabled = true
+        }
         self.player = AVPlayer(playerItem: item)
         self.playerLayer = AVPlayerLayer(player: self.player)
         self.playerLayer?.frame = self.bounds
